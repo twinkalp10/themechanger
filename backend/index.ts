@@ -2,9 +2,13 @@ import express from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { PrismaClient } from "@prisma/client";
+import { Server } from "socket.io";
+import { createServer } from "http";
 
-const prisma = new PrismaClient();
+const port = 3000;
 const app = express();
+const prisma = new PrismaClient();
+
 app.use(express.json());
 
 app.use((req, res, next) => {
@@ -14,7 +18,22 @@ app.use((req, res, next) => {
   next();
 });
 
-const port = 3000;
+const httpServer = createServer(app);
+const io = new Server(httpServer, {
+  cors: {
+    origin: "*",
+  },
+})
+
+
+io.on("connection", (socket) => {
+  console.log(`connected socket.id: ${socket.id}`);
+  socket.on("send_theme", (data) => {
+    console.log("received theme", data);
+    socket.broadcast.emit("received_theme", data)
+  })
+});
+
 
 const SECRET_KEY = "THEMECHANGERAPI";
 
@@ -141,4 +160,8 @@ app.post("/theme-preferences/:id", async (req, res) => {
 
 app.listen(port, () => {
   console.log(`Server Running at ${port} 🚀`);
+});
+
+httpServer.listen(3001, () => {
+  console.log(`Socket.IO server listening on port 3001`);
 });
