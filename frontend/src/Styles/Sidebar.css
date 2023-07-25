@@ -1,0 +1,72 @@
+body {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+.container {
+  display: flex;
+}
+
+main {
+  width: 100%;
+  padding: 20px;
+}
+
+.sidebar {
+  display: flex;
+  width: 150px;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: baseline;
+  background-color: var(--SECONDARY_COLOUR);
+}
+.sidebar body {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+.sidebar .container {
+  display: flex;
+}
+.sidebar main {
+  width: 100%;
+  padding: 20px;
+}
+.sidebar a {
+  color: rgb(231, 226, 226);
+  text-decoration: none;
+}
+.sidebar a.active {
+  background-color: lightblue;
+  color: black;
+}
+.sidebar .sidebarmenu {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 30px 6px 0px;
+}
+.sidebar .link {
+  padding: 10px 15px;
+  transition: all 0.5s;
+}
+.sidebar .link:hover .loginButton:hover {
+  background-color: lightblue;
+  color: black;
+  border-radius: 4px;
+}
+.sidebar .loginButton {
+  display: flex;
+  padding: 4px 6px;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s;
+  margin-bottom: 30px;
+}
+.sidebar .loginButton a.active {
+  background-color: bisque;
+  color: black;
+  border-radius: 4px;
+}/*# sourceMappingURL=Sidebar.css.map */

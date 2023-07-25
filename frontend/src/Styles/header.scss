@@ -1,0 +1,8 @@
+@import '../Variables/Variables.scss';
+
+.header {
+  background-color: $PRIMARY_COLOUR;
+  color: $TEXT_COLOUR;
+  font-size: $MEDIUM-FONT_SIZE;
+  padding: 16px;
+}

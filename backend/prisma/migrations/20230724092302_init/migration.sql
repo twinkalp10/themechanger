@@ -1,0 +1,24 @@
+-- CreateTable
+CREATE TABLE "User" (
+    "ID" SERIAL NOT NULL,
+    "USER_NAME" TEXT NOT NULL,
+    "PASSWORD" TEXT NOT NULL,
+
+    CONSTRAINT "User_pkey" PRIMARY KEY ("ID")
+);
+
+-- CreateTable
+CREATE TABLE "Theme_Preference" (
+    "ID" SERIAL NOT NULL,
+    "USER_ID" INTEGER NOT NULL,
+    "PRIMARY_COLOUR" TEXT NOT NULL,
+    "SECONDARY_COLOUR" TEXT NOT NULL,
+    "TEXT_COLOUR" TEXT NOT NULL,
+    "FONT_SIZE" INTEGER NOT NULL,
+    "FONT" TEXT NOT NULL,
+
+    CONSTRAINT "Theme_Preference_pkey" PRIMARY KEY ("ID")
+);
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_USER_NAME_key" ON "User"("USER_NAME");
