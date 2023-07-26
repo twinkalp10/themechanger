@@ -19,7 +19,14 @@ function App() {
         <BrowserRouter>
           <Sidebar>
             <Routes>
-              <Route path="/" element={<Dashboard />} />
+              <Route
+                path="/"
+                element={
+                  <RequireAuth>
+                    <Dashboard />
+                  </RequireAuth>
+                }
+              />
 
               <Route
                 path="/profile"

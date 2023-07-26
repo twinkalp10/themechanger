@@ -2,8 +2,19 @@ import React, { useEffect, useState } from "react";
 import { useTheme } from "./ThemeContext";
 import { io } from "socket.io-client";
 
-const socket = io("http://localhost:3001");
+const socket = io("http://localhost:3001", {
+  transportOptions: {
+    polling: {
+      extraHeaders: {
+        Authorization: `Bearer ${
+          JSON.parse(localStorage.getItem("user") || "").token
+        }`,
+      },
+    },
+  },
+});
 
+// JSON.parse(localStorage.getItem("user") || "").token;
 const ThemeColorPicker = () => {
   const { theme, changeTheme } = useTheme();
 
@@ -26,11 +37,9 @@ const ThemeColorPicker = () => {
   useEffect(() => {
     socket.on("received_theme", (data) => {
       changeTheme(data.theme);
-      console.log("theme recieved", data.theme);
+      console.log("theme received", data.theme);
     });
   }, [socket]);
-
-  console.log("theme", theme);
 
   return (
     <div>
