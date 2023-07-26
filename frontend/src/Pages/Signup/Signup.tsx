@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import { useAuth } from "../../Utils/AuthContext";
 import { useNavigate, useLocation, Navigate, NavLink } from "react-router-dom";
 import axios from "../../lib/axios";
-import "./Login.css";
-import { useAuth } from "../../Utils/AuthContext";
+import "../Login/Login.css";
 
-const Login = () => {
+const Signup = () => {
   const auth = useAuth();
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
@@ -14,33 +14,33 @@ const Login = () => {
 
   const redirectPath = location.state?.path || "/";
 
-  const handleLogin = async (e: { preventDefault: () => void }) => {
+  const handleSignup = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3000/login", {
+      const response = await axios.post("http://localhost:3000/signup", {
         USER_NAME: username,
         PASSWORD: password,
       });
 
       if (response.status === 200) {
-        auth?.setLogin(response.data);
-        navigate(redirectPath, { replace: true });
+        auth?.setSignup(response.data);
+        console.log(response.data);
+        navigate("/login", { replace: true });
       } else {
         console.log("Invalid credentials");
       }
     } catch (error) {
-      setError("something went wrong with login");
+      setError("something went wrong with signup");
     }
   };
 
   return (
     <div>
-      {auth?.user && <div> {auth.user.USER_NAME} is logged In </div>}
       {!auth?.user && (
         <div className="loginContainer">
-          <h1>Log in to your account</h1>
-          <p>Welcome back! Please enter your details.</p>
-          <form onSubmit={handleLogin} className="loginForm">
+          <h1>Create a new account</h1>
+          <p>Customise dashboard in your way!</p>
+          <form onSubmit={handleSignup} className="loginForm">
             <div className="inputContainer">
               <label htmlFor="username">Username</label>
               <input
@@ -60,14 +60,14 @@ const Login = () => {
               />
             </div>
 
-            <button type="submit">Log in</button>
+            <button type="submit">Sign up</button>
           </form>
 
           <div className="signupLink">
             <p>
-              Don’t have an account?
-              <NavLink to="/signup">
-                <span>Sign up</span>
+              Already have an account?
+              <NavLink to="/login">
+                <span>Log in</span>
               </NavLink>
             </p>
           </div>
@@ -78,4 +78,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;

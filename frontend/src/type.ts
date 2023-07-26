@@ -8,6 +8,7 @@ export interface User {
 export interface AuthContextProps {
   user?: User;
   setLogin: (user: User) => void;
+  setSignup: (user: User) => void;
   setLogout: () => void;
 }
 

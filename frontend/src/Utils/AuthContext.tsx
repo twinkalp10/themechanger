@@ -21,13 +21,15 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const setLogin = (user: User) => setUser(user);
 
+  const setSignup = (user: User) => setUser(user);
+
   const setLogout = () => {
     setUser(undefined);
     localStorage.removeItem("user");
   };
 
   return (
-    <AuthContext.Provider value={{ user, setLogin, setLogout }}>
+    <AuthContext.Provider value={{ user, setLogin, setLogout, setSignup }}>
       {children}
     </AuthContext.Provider>
   );

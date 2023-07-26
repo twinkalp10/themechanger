@@ -5,6 +5,7 @@ import Profile from "./Pages/Profile";
 import Info from "./Pages/Info";
 import Layout from "./Components/Layout/Layout";
 import Login from "./Pages/Login/Login";
+import Signup from "./Pages/Signup/Signup";
 
 const MainRouter = () => {
   return (
@@ -15,6 +16,7 @@ const MainRouter = () => {
           <Route path="/profile" element={<Profile />} />
           <Route path="/info" element={<Info />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
       </Layout>
     </BrowserRouter>
