@@ -25,13 +25,22 @@ const io = new Server(httpServer, {
   },
 })
 
-
 io.on("connection", (socket) => {
   console.log(`connected socket.id: ${socket.id}`);
-  socket.on("send_theme", (data) => {
-    console.log("received theme", data);
-    socket.broadcast.emit("received_theme", data)
-  })
+  let token = socket.handshake.headers.authorization;
+  if (token) {
+    token = token?.replace("Bearer ", "");
+    const decoded = jwt.decode(token) as JwtPayload;
+    const userID = decoded?.userID;
+    socket.on("send_theme", async (data) => {
+      console.log("received theme", data);
+      socket.broadcast.emit("received_theme", data)
+    })
+  }
+  else {
+    console.log("no token found");
+  }
+
 });
 
 
@@ -123,41 +132,6 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.post("/theme-preferences/:id", async (req, res) => {
-  const { id } = req.params;
-
-  const { PRIMARY_COLOUR, SECONDARY_COLOUR, TEXT_COLOUR, FONT_SIZE, FONT } =
-    req.body;
-
-  try {
-    const user = await prisma.user.findUnique({
-      where: { ID: Number(id) },
-    });
-
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
-    const themePreferences = await prisma.theme_Preference.create({
-      data: {
-        PRIMARY_COLOUR,
-        SECONDARY_COLOUR,
-        TEXT_COLOUR,
-        FONT_SIZE,
-        FONT,
-        USER_ID: Number(id),
-      },
-    });
-
-    return res.status(200).json({ message: "Theme preferences saved", themePreferences });
-
-
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({ message: "something went wrong with saving default theme preferences" });
-  }
-});
-
 app.listen(port, () => {
   console.log(`Server Running at ${port} 🚀`);
 });
@@ -165,3 +139,10 @@ app.listen(port, () => {
 httpServer.listen(3001, () => {
   console.log(`Socket.IO server listening on port 3001`);
 });
+
+
+interface JwtPayload {
+  userID: number;
+  name: string;
+  iat?: number;
+}
