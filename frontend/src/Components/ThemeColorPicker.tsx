@@ -34,6 +34,22 @@ const ThemeColorPicker = () => {
     console.log("theme sent", { ...theme, SECONDARY_COLOUR: e.target.value });
   };
 
+  const handleTextColourChange = (e: any) => {
+    changeTheme({ ...theme, TEXT_COLOUR: e.target.value });
+    socket.emit("send_theme", {
+      theme: { ...theme, TEXT_COLOUR: e.target.value },
+    });
+    console.log("text sent", { ...theme, TEXT_COLOUR: e.target.value });
+  };
+
+  const handleFontSizeChange = (e: any) => {
+    changeTheme({ ...theme, FONT_SIZE: e.target.value });
+    socket.emit("send_theme", {
+      theme: { ...theme, FONT_SIZE: e.target.value },
+    });
+    console.log("fontsize sent", { ...theme, FONT_SIZE: e.target.value });
+  };
+
   useEffect(() => {
     socket.on("received_theme", (data) => {
       changeTheme(data.theme);
@@ -60,6 +76,22 @@ const ThemeColorPicker = () => {
           onChange={handleSecondaryColorChange}
         />
       </div>
+      <div>
+        <label>Text color: </label>
+        <input
+          type="color"
+          value={theme.TEXT_COLOUR}
+          onChange={handleTextColourChange}
+        />
+      </div>
+      {/* <div>
+        <label>Font Size: </label>
+        <input
+          type="number"
+          value={theme.FONT_SIZE}
+          onChange={handleFontSizeChange}
+        />
+      </div> */}
     </div>
   );
 };

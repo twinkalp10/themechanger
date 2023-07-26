@@ -2,7 +2,7 @@
 
 
 .footer {
-  background-color: $SECONDARY_COLOUR;
+  background-color:var(--SECONDARY_COLOUR);
   color: $TEXT_COLOUR;
   font-size: $SMALL-FONT_SIZE;
   padding: 16px;

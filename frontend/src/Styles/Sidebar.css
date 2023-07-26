@@ -20,7 +20,9 @@ main {
   flex-direction: column;
   justify-content: flex-start;
   align-items: baseline;
-  background-color: var(--SECONDARY_COLOUR);
+  background-color: var(--PRIMARY_COLOUR);
+  color: var(--TEXT_COLOUR);
+  font-size: var(--FONT_SIZE);
 }
 .sidebar body {
   box-sizing: border-box;
@@ -35,7 +37,8 @@ main {
   padding: 20px;
 }
 .sidebar a {
-  color: rgb(231, 226, 226);
+  color: var(--TEXT_COLOUR);
+  font-size: var(--FONT_SIZE);
   text-decoration: none;
 }
 .sidebar a.active {

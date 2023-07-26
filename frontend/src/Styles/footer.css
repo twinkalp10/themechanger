@@ -1,5 +1,5 @@
 .footer {
-  background-color: #6c757d;
+  background-color: var(--SECONDARY_COLOUR);
   color: #333;
   font-size: 14px;
   padding: 16px;
