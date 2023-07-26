@@ -50,6 +50,14 @@ const ThemeColorPicker = () => {
     console.log("fontsize sent", { ...theme, FONT_SIZE: e.target.value });
   };
 
+  const handleFontFamilyChange = (e: any) => {
+    changeTheme({ ...theme, FONT: e.target.value });
+    socket.emit("send_theme", {
+      theme: { ...theme, FONT: e.target.value },
+    });
+    console.log("font family sent", { ...theme, FONT: e.target.value });
+  };
+
   useEffect(() => {
     socket.on("received_theme", (data) => {
       changeTheme(data.theme);
@@ -92,6 +100,14 @@ const ThemeColorPicker = () => {
           onChange={handleFontSizeChange}
         />
       </div> */}
+      <div>
+        <label>Font Family: </label>
+        <input
+          type="text"
+          value={theme.FONT}
+          onChange={handleFontFamilyChange}
+        />
+      </div>
     </div>
   );
 };

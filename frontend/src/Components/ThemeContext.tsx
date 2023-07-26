@@ -45,6 +45,7 @@ const ThemeProvider = ({ children }: ThemeProviderProps) => {
       "--FONT_SIZE",
       theme.FONT_SIZE + "px"
     );
+
     document.documentElement.style.setProperty("--FONT", theme.FONT);
   }, [theme]);
 
