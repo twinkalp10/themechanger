@@ -34,7 +34,41 @@ io.on("connection", (socket) => {
     const userID = decoded?.userID;
     socket.on("send_theme", async (data) => {
       console.log("received theme", data);
-      socket.broadcast.emit("received_theme", data)
+
+      try {
+
+        const existingTheme = await prisma.theme_Preference.findUnique({
+          where: {
+            USER_ID: userID,
+          }
+        })
+
+        if (!existingTheme) {
+          const newTheme = await prisma.theme_Preference.create({
+            data: {
+              ...data.theme,
+              USER_ID: userID,
+            }
+
+          })
+          console.log("new theme", newTheme);
+        }
+        else {
+          const updatedTheme = await prisma.theme_Preference.update({
+            where: {
+              USER_ID: userID,
+            },
+            data: {
+              ...data.theme,
+            }
+          })
+          console.log("updated theme", updatedTheme);
+        }
+        socket.broadcast.emit("received_theme", data)
+      } catch (error) {
+        console.log(error);
+      }
+
     })
   }
   else {

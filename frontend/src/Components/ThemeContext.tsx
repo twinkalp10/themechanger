@@ -4,8 +4,8 @@ interface Theme {
   PRIMARY_COLOUR: string;
   SECONDARY_COLOUR: string;
   TEXT_COLOUR: string;
-  FONT_SIZE: string;
-  FONT_FAMILY: string;
+  FONT_SIZE: number;
+  FONT: string;
 }
 
 interface ThemeContextProps {
@@ -24,8 +24,8 @@ const ThemeProvider = ({ children }: ThemeProviderProps) => {
     PRIMARY_COLOUR: "#007bff",
     SECONDARY_COLOUR: "#6c757d",
     TEXT_COLOUR: "#333",
-    FONT_SIZE: "16px",
-    FONT_FAMILY: "Arial, sans-serif",
+    FONT_SIZE: 16,
+    FONT: "Arial",
   });
 
   useEffect(() => {
@@ -41,11 +41,11 @@ const ThemeProvider = ({ children }: ThemeProviderProps) => {
       "--TEXT_COLOUR",
       theme.TEXT_COLOUR
     );
-    document.documentElement.style.setProperty("--FONT_SIZE", theme.FONT_SIZE);
     document.documentElement.style.setProperty(
-      "--FONT_FAMILY",
-      theme.FONT_FAMILY
+      "--FONT_SIZE",
+      theme.FONT_SIZE as unknown as string
     );
+    document.documentElement.style.setProperty("--FONT", theme.FONT);
   }, [theme]);
 
   const changeTheme = (newTheme: Theme) => {
