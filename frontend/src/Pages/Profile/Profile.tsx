@@ -8,7 +8,7 @@ const Profile = () => {
   const navigate = useNavigate();
   const handleLogout = () => {
     auth?.setLogout();
-    navigate("/login");
+    navigate("/");
   };
   return (
     <div className="profileContainer">
