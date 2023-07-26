@@ -1,0 +1,24 @@
+
+.header {
+  background-color: var(--SECONDARY_COLOUR);
+  color: var(--TEXT_COLOUR);
+  font-size: var(--FONT_SIZE);
+  font-family: var(--FONT);
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header button {
+  background-color: var(--PRIMARY_COLOUR);
+  color: black;
+  cursor: pointer;
+  border-radius: 8px;
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--PRIMARY_COLOUR);
+  background-color: var(--PRIMARY_COLOUR);
+  color: var(--TEXT_COLOUR);
+  font-size: var(--FONT_SIZE);
+  font-family: var(--FONT);
+}/*# sourceMappingURL=header.css.map */

@@ -1,0 +1,9 @@
+@use "../../Variables/Variables.css";
+
+.footer {
+  background-color: var(--SECONDARY_COLOUR);
+  color: var(--TEXT_COLOUR);
+  font-size: var(--FONT_SIZE);
+  font-family: var(--FONT);
+  padding: 16px;
+}

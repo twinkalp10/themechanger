@@ -1,5 +1,4 @@
 import axios from "axios";
-import { stringify } from "querystring";
 import { createContext, useContext, useEffect, useState } from "react";
 
 interface User {
@@ -15,6 +14,7 @@ interface AuthProviderProps {
 
 interface AuthContextValue {
   user: User | null;
+  // signup: (USER_NAME: string, PASSWORD: string) => void;
   login: (USER_NAME: string, PASSWORD: string) => void;
   logout: () => void;
 }

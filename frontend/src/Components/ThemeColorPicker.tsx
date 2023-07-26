@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useTheme } from "./ThemeContext";
 import { io } from "socket.io-client";
+import { getUserLocalStorage } from "../Utils/getUserLocalStorage";
 
 const socket = io("http://localhost:3001", {
   transportOptions: {
     polling: {
       extraHeaders: {
-        Authorization: `Bearer ${
-          JSON.parse(localStorage.getItem("user") || "").token
-        }`,
+        Authorization: `Bearer ${getUserLocalStorage()?.TOKEN}`,
       },
     },
   },
 });
 
-// JSON.parse(localStorage.getItem("user") || "").token;
 const ThemeColorPicker = () => {
   const { theme, changeTheme } = useTheme();
 

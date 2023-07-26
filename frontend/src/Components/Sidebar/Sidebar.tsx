@@ -1,7 +1,7 @@
 import React from "react";
-import "../Styles/Sidebar.css";
+import "./Sidebar.css";
 import { NavLink } from "react-router-dom";
-import { useAuth } from "./Auth";
+import { useAuth } from "../Auth";
 
 const sidebarItems = [
   {
@@ -9,16 +9,12 @@ const sidebarItems = [
     name: "Profile",
   },
   {
-    path: "/",
+    path: "/dashboard",
     name: "Dashboard",
   },
   {
-    path: "/header",
-    name: "Header",
-  },
-  {
-    path: "/footer",
-    name: "Footer",
+    path: "/info",
+    name: "Info",
   },
 ];
 
@@ -26,20 +22,13 @@ interface SidebarProps {
   children: React.ReactNode;
 }
 
-const Sidebar = ({ children }: SidebarProps) => {
+const Sidebar = () => {
   const auth = useAuth();
 
   return (
     <div className="container">
       <div className="sidebar">
         <div className="sidebarmenu">
-          <div className="loginButton">
-            {!auth?.user && (
-              <NavLink to="/login" className="link">
-                Log In
-              </NavLink>
-            )}
-          </div>
           {sidebarItems.map((item, index) => (
             <NavLink to={item.path} key={index} className="link">
               {item.name}{" "}
@@ -47,7 +36,6 @@ const Sidebar = ({ children }: SidebarProps) => {
           ))}
         </div>
       </div>
-      <main>{children}</main>
     </div>
   );
 };

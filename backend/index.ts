@@ -152,14 +152,14 @@ app.post("/login", async (req, res) => {
       return res.status(400).json({ message: "Invalid credentials" });
     }
 
-    const token = jwt.sign(
+    const TOKEN = jwt.sign(
       { userID: existingUser?.ID, name: existingUser?.USER_NAME },
       SECRET_KEY
     );
 
     return res
       .status(200)
-      .json({ message: "login successful", token, existingUser });
+      .json({ message: "login successful", TOKEN, USER_NAME, ID: existingUser.ID });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: "something went wrong with login" });

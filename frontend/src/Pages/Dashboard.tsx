@@ -1,5 +1,5 @@
 import React from "react";
-import Sidebar from "../Components/Sidebar";
+import Sidebar from "../Components/Sidebar/Sidebar";
 import ThemeColorPicker from "../Components/ThemeColorPicker";
 
 const Dashboard = () => {

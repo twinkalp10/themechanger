@@ -9,11 +9,9 @@ const Profile = () => {
     auth?.logout();
     navigate("/login");
   };
-  console.log(auth?.user);
   return (
     <div>
       <React.Fragment>
-        <div> </div>
         <div>Welcome {auth?.user?.existingUser.USER_NAME} </div>
         <button onClick={handleLogout}>Log out</button>
       </React.Fragment>

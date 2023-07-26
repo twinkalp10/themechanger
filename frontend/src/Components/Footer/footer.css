@@ -1,6 +1,8 @@
+
 .footer {
   background-color: var(--SECONDARY_COLOUR);
-  color: #333;
-  font-size: 14px;
+  color: var(--TEXT_COLOUR);
+  font-size: var(--FONT_SIZE);
+  font-family: var(--FONT);
   padding: 16px;
 }/*# sourceMappingURL=footer.css.map */

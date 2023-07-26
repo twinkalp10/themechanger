@@ -1,23 +1,12 @@
-@use "../Variables/Variables";
-
-body {
-  box-sizing: border-box;
-  margin: 0px;
-  padding: 0px;
-}
+@use "../../Variables/Variables.css";
 
 .container {
   display: flex;
 }
 
-main {
-  width: 100%;
-  padding: 20px;
-}
-
 .sidebar {
   display: flex;
-  width: 150px;
+  width: 170px;
   height: 100vh;
   flex-direction: column;
   justify-content: flex-start;
@@ -27,25 +16,15 @@ main {
   font-size: var(--FONT_SIZE);
   font-family: var(--FONT);
 
-  body {
-    box-sizing: border-box;
-    margin: 0px;
-    padding: 0px;
-  }
-
   .container {
     display: flex;
-  }
-
-  main {
-    width: 100%;
-    padding: 20px;
   }
 
   a {
     color: var(--TEXT_COLOUR);
     font-size: var(--FONT_SIZE);
     text-decoration: none;
+    border-radius: 4px;
   }
 
   a.active {
@@ -57,7 +36,7 @@ main {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    padding: 30px 6px 0px;
+    padding: 60px 20px;
   }
 
   .link {
@@ -69,20 +48,5 @@ main {
     background-color: lightblue;
     color: black;
     border-radius: 4px;
-  }
-
-  .loginButton {
-    display: flex;
-    padding: 4px 6px;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.5s;
-    margin-bottom: 30px;
-
-    a.active {
-      background-color: bisque;
-      color: black;
-      border-radius: 4px;
-    }
   }
 }
