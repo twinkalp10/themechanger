@@ -1,9 +1,15 @@
 @use "../../Variables/Variables.css";
 
 .footer {
-  background-color: var(--SECONDARY_COLOUR);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+}
+
+.footerText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--TEXT_COLOUR);
   font-size: var(--FONT_SIZE);
   font-family: var(--FONT);
-  padding: 16px;
 }

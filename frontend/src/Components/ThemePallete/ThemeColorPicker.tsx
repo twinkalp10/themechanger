@@ -22,7 +22,6 @@ const ThemeColorPicker = () => {
     socket.emit("send_theme", {
       theme: { ...theme, PRIMARY_COLOUR: e.target.value },
     });
-    console.log("theme sent", { ...theme, PRIMARY_COLOUR: e.target.value });
   };
 
   const handleSecondaryColorChange = (e: any) => {
@@ -30,7 +29,6 @@ const ThemeColorPicker = () => {
     socket.emit("send_theme", {
       theme: { ...theme, SECONDARY_COLOUR: e.target.value },
     });
-    console.log("theme sent", { ...theme, SECONDARY_COLOUR: e.target.value });
   };
 
   const handleTextColourChange = (e: any) => {
@@ -38,7 +36,6 @@ const ThemeColorPicker = () => {
     socket.emit("send_theme", {
       theme: { ...theme, TEXT_COLOUR: e.target.value },
     });
-    console.log("text sent", { ...theme, TEXT_COLOUR: e.target.value });
   };
 
   const handleFontSizeChange = (e: any) => {
@@ -46,7 +43,6 @@ const ThemeColorPicker = () => {
     socket.emit("send_theme", {
       theme: { ...theme, FONT_SIZE: e.target.value },
     });
-    console.log("fontsize sent", { ...theme, FONT_SIZE: e.target.value });
   };
 
   const handleFontFamilyChange = (e: any) => {
@@ -54,13 +50,11 @@ const ThemeColorPicker = () => {
     socket.emit("send_theme", {
       theme: { ...theme, FONT: e.target.value },
     });
-    console.log("font family sent", { ...theme, FONT: e.target.value });
   };
 
   useEffect(() => {
     socket.on("received_theme", (data) => {
       changeTheme(data.theme);
-      console.log("theme received", data.theme);
     });
   }, [socket]);
 
