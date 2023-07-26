@@ -5,7 +5,7 @@ import { getUserLocalStorage } from "./getUserLocalStorage";
 
 const AuthContext = createContext<AuthContextProps | null>(null);
 
-export interface AuthProviderProps {
+interface AuthProviderProps {
   children: React.ReactNode;
 }
 

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useTheme } from "./ThemeContext";
+import { useTheme } from "../../Utils/ThemeContext";
 import { io } from "socket.io-client";
-import { getUserLocalStorage } from "../Utils/getUserLocalStorage";
-import "../../src/Pages/Dashboard/Dashboard.css";
+import { getUserLocalStorage } from "../../Utils/getUserLocalStorage";
+import "../../Pages/Dashboard/Dashboard.css";
 
 const socket = io("http://localhost:3001", {
   transportOptions: {

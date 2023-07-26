@@ -12,3 +12,20 @@ export interface AuthContextProps {
   setLogout: () => void;
 }
 
+export interface Theme {
+  PRIMARY_COLOUR: string;
+  SECONDARY_COLOUR: string;
+  TEXT_COLOUR: string;
+  FONT_SIZE: number;
+  FONT: string;
+}
+
+export interface ThemeContextProps {
+  theme: Theme;
+  changeTheme: (newTheme: Theme) => void;
+}
+
+export interface ThemeProviderProps {
+  children: React.ReactNode;
+}
+

@@ -1,21 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-
-interface Theme {
-  PRIMARY_COLOUR: string;
-  SECONDARY_COLOUR: string;
-  TEXT_COLOUR: string;
-  FONT_SIZE: number;
-  FONT: string;
-}
-
-interface ThemeContextProps {
-  theme: Theme;
-  changeTheme: (newTheme: Theme) => void;
-}
-
-interface ThemeProviderProps {
-  children: React.ReactNode;
-}
+import { Theme, ThemeContextProps, ThemeProviderProps } from "../type";
 
 const ThemeContext = createContext<ThemeContextProps | null>(null);
 

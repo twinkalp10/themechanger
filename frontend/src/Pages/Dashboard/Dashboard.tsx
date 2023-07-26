@@ -1,6 +1,6 @@
 import React from "react";
 import Sidebar from "../../Components/Sidebar/Sidebar";
-import ThemeColorPicker from "../../Components/ThemeColorPicker";
+import ThemeColorPicker from "../../Components/ThemePallete/ThemeColorPicker";
 import "./Dashboard.css";
 
 const Dashboard = () => {
