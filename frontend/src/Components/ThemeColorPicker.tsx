@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useTheme } from "./ThemeContext";
 import { io } from "socket.io-client";
 import { getUserLocalStorage } from "../Utils/getUserLocalStorage";
+import "../../src/Pages/Dashboard/Dashboard.css";
 
 const socket = io("http://localhost:3001", {
   transportOptions: {
@@ -64,28 +65,32 @@ const ThemeColorPicker = () => {
   }, [socket]);
 
   return (
-    <div>
-      <div>
+    <div className="themeContainer">
+      <div className="themeInput">
         <label>Primary color: </label>
-
         <input
           type="color"
+          className="inputcolor"
           value={theme.PRIMARY_COLOUR}
           onChange={handlePrimaryColorChange}
         />
       </div>
-      <div>
+
+      <div className="themeInput">
         <label>Secondary color: </label>
         <input
           type="color"
+          className="inputcolor"
           value={theme.SECONDARY_COLOUR}
           onChange={handleSecondaryColorChange}
         />
       </div>
-      <div>
+
+      <div className="themeInput">
         <label>Text color: </label>
         <input
           type="color"
+          className="inputcolor"
           value={theme.TEXT_COLOUR}
           onChange={handleTextColourChange}
         />
@@ -98,11 +103,12 @@ const ThemeColorPicker = () => {
           onChange={handleFontSizeChange}
         />
       </div> */}
-      <div>
+      <div className="themeInput">
         <label>Font Family: </label>
         <input
           type="text"
           value={theme.FONT}
+          className="inputText"
           onChange={handleFontFamilyChange}
         />
       </div>

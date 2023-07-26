@@ -1,5 +1,5 @@
 import React from "react";
-import { useAuth } from "./Auth";
+import { useAuth } from "../Utils/AuthContext";
 import { Navigate, useLocation } from "react-router-dom";
 
 interface RequireAuthProps {

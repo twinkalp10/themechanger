@@ -19,9 +19,14 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   }, []);
 
-  const setLogin = (user: User) => setUser(user);
+  const setLogin = (user: User) => {
+    setUser(user);
+    localStorage.setItem("user", JSON.stringify(user));
+  };
 
-  const setSignup = (user: User) => setUser(user);
+  const setSignup = (user: User) => {
+    localStorage.setItem("newUser", JSON.stringify(user));
+  };
 
   const setLogout = () => {
     setUser(undefined);

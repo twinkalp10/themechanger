@@ -1,0 +1,22 @@
+
+.profileContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+.profileContainer h1 {
+  margin: 0px;
+  padding: 0px;
+}
+.profileContainer button {
+  cursor: pointer;
+  border-radius: 8px;
+  width: 80px;
+  padding: 8px 10px;
+  border: 1px solid #7f56d9;
+  background: #7f56d9;
+  font-size: medium;
+  color: white;
+  margin-top: 15px;
+}/*# sourceMappingURL=Profile.css.map */

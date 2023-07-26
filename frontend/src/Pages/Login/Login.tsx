@@ -23,6 +23,7 @@ const Login = () => {
       });
 
       if (response.status === 200) {
+        console.log(response.data);
         auth?.setLogin(response.data);
         navigate(redirectPath, { replace: true });
       } else {
@@ -35,7 +36,11 @@ const Login = () => {
 
   return (
     <div>
-      {auth?.user && <div> {auth.user.USER_NAME} is logged In </div>}
+      {auth?.user && (
+        <div className="loggedIn">
+          {auth.user.USER_NAME} is logged In already!
+        </div>
+      )}
       {!auth?.user && (
         <div className="loginContainer">
           <h1>Log in to your account</h1>

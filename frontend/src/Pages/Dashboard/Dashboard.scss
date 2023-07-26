@@ -1,0 +1,32 @@
+@use "../../Variables/Variables.css";
+
+.dashboardContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 30px;
+}
+
+.themeInput {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 30px;
+
+  .inputcolor {
+    width: 30px;
+    height: 30px;
+  }
+
+  .inputText {
+    width: 150px;
+    border-radius: 8px;
+    border: 1px solid #d0d5dd;
+    background: #fff;
+    padding: 8px 12px;
+    box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+  }
+}

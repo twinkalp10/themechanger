@@ -23,6 +23,12 @@
   margin-top: 10px;
 }
 
+.loggedIn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .inputContainer {
   display: flex;
   flex-direction: column;
@@ -40,6 +46,7 @@
   width: 360px;
   display: flex;
   padding: 10px 14px;
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
 }
 
 .loginForm button {

@@ -1,7 +1,6 @@
 import React from "react";
 import "./Sidebar.css";
 import { NavLink } from "react-router-dom";
-import { useAuth } from "../Auth";
 
 const sidebarItems = [
   {
@@ -9,7 +8,7 @@ const sidebarItems = [
     name: "Profile",
   },
   {
-    path: "/dashboard",
+    path: "/",
     name: "Dashboard",
   },
   {
@@ -18,13 +17,7 @@ const sidebarItems = [
   },
 ];
 
-interface SidebarProps {
-  children: React.ReactNode;
-}
-
 const Sidebar = () => {
-  const auth = useAuth();
-
   return (
     <div className="container">
       <div className="sidebar">
