@@ -1,4 +1,3 @@
-import axios from "../lib/axios";
 import { createContext, useContext, useEffect, useState } from "react";
 import { AuthContextProps, User } from "../type";
 import { getUserLocalStorage } from "./getUserLocalStorage";

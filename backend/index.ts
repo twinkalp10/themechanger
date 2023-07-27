@@ -87,8 +87,8 @@ app.get("/", async (req, res) => {
 
 app.post("/signup", async (req, res) => {
   const { USER_NAME, PASSWORD } = req.body;
-
   try {
+
     if (!USER_NAME) {
       return res.status(400).json({ message: "Username is required" });
     }
@@ -96,6 +96,13 @@ app.post("/signup", async (req, res) => {
     const existingUser = await prisma.user.findUnique({
       where: { USER_NAME: USER_NAME },
     });
+
+    // const newThemeForExistingUSer = await prisma.theme_Preference.create({
+    //   data: {
+    //     ...req.body.theme,
+    //   }
+    // })
+    // console.log("new theme for existing user", newThemeForExistingUSer);
 
     if (existingUser) {
       return res.status(400).json({
@@ -117,6 +124,7 @@ app.post("/signup", async (req, res) => {
     return res
       .status(200)
       .json({ message: "signup successful", token, newUser });
+
   } catch (error) {
     console.log(error);
     return res
@@ -164,6 +172,29 @@ app.post("/login", async (req, res) => {
     console.log(error);
     return res.status(500).json({ message: "something went wrong with login" });
   }
+});
+
+app.get("/theme/", async (req, res) => {
+  const { USER_NAME, PASSWORD } = req.body;
+
+  try {
+    const existingUser = await prisma.user.findUnique({
+      where: { USER_NAME: USER_NAME },
+    });
+    const existingTheme = await prisma.theme_Preference.findUnique({
+      where: {
+        USER_ID: existingUser?.ID,
+      }
+    })
+    if (existingTheme) {
+      return res.status(200).json(existingTheme);
+    } else {
+      return res.status(404).json({ message: "No theme found" })
+    }
+  } catch (error) {
+    console.log(error);
+  }
+
 });
 
 app.listen(port, () => {

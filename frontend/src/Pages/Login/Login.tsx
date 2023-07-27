@@ -36,11 +36,7 @@ const Login = () => {
 
   return (
     <div>
-      {auth?.user && (
-        <div className="loggedIn">
-          {auth.user.USER_NAME} is logged In already!
-        </div>
-      )}
+      {auth?.user && <Navigate to={redirectPath} replace={true} />}
       {!auth?.user && (
         <div className="loginContainer">
           <h1>Log in to your account</h1>

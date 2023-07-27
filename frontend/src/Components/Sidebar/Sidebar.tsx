@@ -1,6 +1,6 @@
 import React from "react";
 import "./Sidebar.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const sidebarItems = [
   {
@@ -18,6 +18,15 @@ const sidebarItems = [
 ];
 
 const Sidebar = () => {
+  const location = useLocation();
+  const currentPath = location.pathname;
+
+  const excludePaths = ["/login", "/signup"];
+
+  if (excludePaths.includes(currentPath)) {
+    return null;
+  }
+
   return (
     <div className="container">
       <div className="sidebar">
