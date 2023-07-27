@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { Theme, ThemeContextProps, ThemeProviderProps } from "../type";
+import axios from "../lib/axios";
+import { getUserLocalStorage } from "./getUserLocalStorage";
 
 const ThemeContext = createContext<ThemeContextProps | null>(null);
 
@@ -11,6 +13,20 @@ const ThemeProvider = ({ children }: ThemeProviderProps) => {
     FONT_SIZE: 16,
     FONT: "Arial",
   });
+
+  const fetchThemeData = async () => {
+    const response = await axios.get("/theme", {
+      headers: {
+        Authorization: `Bearer ${getUserLocalStorage()?.TOKEN}`, // Replace with the actual access token
+      },
+    });
+    changeTheme(response.data);
+    console.log(response.data);
+  };
+
+  useEffect(() => {
+    fetchThemeData();
+  }, []);
 
   useEffect(() => {
     document.documentElement.style.setProperty(

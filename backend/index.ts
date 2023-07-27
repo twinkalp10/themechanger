@@ -174,28 +174,29 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.get("/theme/", async (req, res) => {
-  const { USER_NAME, PASSWORD } = req.body;
 
-  try {
-    const existingUser = await prisma.user.findUnique({
-      where: { USER_NAME: USER_NAME },
-    });
-    const existingTheme = await prisma.theme_Preference.findUnique({
-      where: {
-        USER_ID: existingUser?.ID,
+app.get("/theme", async (req, res) => {
+  const token = req.headers.authorization;
+  if (token) {
+    const decoded = await jwt.decode(token.replace("Bearer ", "")) as JwtPayload;
+    const userID = decoded?.userID;
+    try {
+      const existingTheme = await prisma.theme_Preference.findUnique({
+        where: {
+          USER_ID: userID,
+        }
+      })
+      if (existingTheme) {
+        return res.status(200).json(existingTheme);
+      } else {
+        return res.status(404).json({ message: "No theme found" })
       }
-    })
-    if (existingTheme) {
-      return res.status(200).json(existingTheme);
-    } else {
-      return res.status(404).json({ message: "No theme found" })
+    } catch (error) {
+      console.log(error);
     }
-  } catch (error) {
-    console.log(error);
   }
-
 });
+
 
 app.listen(port, () => {
   console.log(`Server Running at ${port} 🚀`);
