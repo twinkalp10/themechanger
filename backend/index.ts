@@ -97,12 +97,6 @@ app.post("/signup", async (req, res) => {
       where: { USER_NAME: USER_NAME },
     });
 
-    // const newThemeForExistingUSer = await prisma.theme_Preference.create({
-    //   data: {
-    //     ...req.body.theme,
-    //   }
-    // })
-    // console.log("new theme for existing user", newThemeForExistingUSer);
 
     if (existingUser) {
       return res.status(400).json({
@@ -115,7 +109,17 @@ app.post("/signup", async (req, res) => {
     const newUser = await prisma.user.create({
       data: { USER_NAME: USER_NAME, PASSWORD: hashedPassword },
     });
-
+    await prisma.theme_Preference.create({
+      data: {
+        USER_ID: newUser?.ID,
+        PRIMARY_COLOUR: "#007bff",
+        SECONDARY_COLOUR: "#6c757d",
+        TEXT_COLOUR: "#333",
+        FONT_SIZE: 16,
+        FONT: "Arial",
+      }
+    }
+    )
     const token = jwt.sign(
       { userID: newUser.ID, name: newUser.USER_NAME },
       SECRET_KEY
